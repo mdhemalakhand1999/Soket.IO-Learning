@@ -23,10 +23,18 @@ io.on('connection', (socket) => {
       
         return `${hours}:${minutes}:${seconds}`;
     }
-  
+    /**
+     * Send data
+     * */
       setInterval(() => {
         socket.emit("time", getCurrentTimeString());
       }, 1)
+      /**
+       * Recive data
+       * */
+      socket.on("message", function(arg) {
+        console.log(arg);
+      });
 
     socket.on('disconnect', () => {
       console.log('User disconnected');

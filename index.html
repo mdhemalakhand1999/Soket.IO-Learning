@@ -7,14 +7,23 @@
 </head>
 <body>
     <h1 id="time-display">Current Time: Loading...</h1>
+    <button onclick="sendData()">Send data</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
     <script>
       const socket = io();
-  
+      /**
+       * Recive data
+       * */
       socket.on("time", (data) => {
-        document.getElementById('time-display').innerText = `Current Time: ${data}`;
-    });
+          document.getElementById('time-display').innerText = `Current Time: ${data}`;
+      });
+      /**
+       * Send data
+       */
+      function sendData() {
+        socket.send('Hey! Its your message');
+      }
     </script>
 </body>
 </html>
